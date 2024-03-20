@@ -1,0 +1,56 @@
+def BRANCH = 'main'
+
+pipeline {
+    agent { 
+        node { 
+            label getLabel(BRANCH)
+        } 
+    } 
+      
+    stages {
+        
+        stage('Clean') {
+            steps {
+                cleanWs()
+                echo "I am cleaning your amazing branch...oh oh oh....."
+            }
+        }   
+        
+        stage('Clone repo') {
+            steps {
+                git branch:BRANCH, url: 'https://github.com/GarinaKristina/PET_project_javascript_Gilexpo-Draft-.git'
+            }
+        }
+        
+    
+        stage('Packages install') {
+            steps {
+                script {
+                sh 'npm ci'
+                }
+            }
+        }
+        
+        stage('Run tests') {
+            steps {    
+                    script {
+                    sh 'npm run good_test'
+                    }
+                
+            }
+        }
+        
+        stage('Report') {
+            steps { 
+                archiveArtifacts 'allure-report/**'
+                script {
+                
+                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                }
+                
+            }
+        }
+
+    }   
+   
+}
