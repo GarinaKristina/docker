@@ -18,7 +18,7 @@ pipeline {
         
         stage('Clone repo') {
             steps {
-                git branch:BRANCH, url: 'https://github.com/GarinaKristina/PET_project_javascript_Gilexpo-Draft-.git'
+                git branch:BRANCH, url: 'https://github.com/GarinaKristina/docker.git'
             }
         }
         
@@ -34,22 +34,12 @@ pipeline {
         stage('Run tests') {
             steps {    
                     script {
-                    sh 'npm run good_test'
+                    sh 'npm run wdio'
                     }
                 
             }
         }
         
-        stage('Report') {
-            steps { 
-                archiveArtifacts 'allure-report/**'
-                script {
-                
-                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-                }
-                
-            }
-        }
 
     }   
    

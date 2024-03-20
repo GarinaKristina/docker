@@ -1,22 +1,26 @@
 version: '3.8'
 services:
-  autotest:
-    build: ./autotest
-    volumes:
-      - ./autotest:/usr/src/autotest
-    networks:
-      - autotest-network
-
+  # autotest:
+  #   build: ./autotest
+  #   volumes:
+  #     - ./autotest:/usr/src/autotest
+  #   networks:
+  #     - autotest-network
   jenkins:
-    build: ./jenkins
+    build: ./jenlins
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
     ports:
-      - '8080:8080'
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
     volumes:
-      - ./jenkins/jenkins-config:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - autotest-network
+      - ./jenkins/jenkins_configuration:/var/jenkins_home
+      - ./jenkins/var/run/docker.sock:/var/run/docker.sock
 
-networks:
-  autotest-network:
-    driver: bridge
+    # networks:
+    #   - autotest-network
+# networks:
+#   autotest-network:
+#     driver: bridge

@@ -1,17 +1,19 @@
 # Используйте официальный образ Jenkins
 FROM jenkins/jenkins:lts
 
-# Отключите установку плагинов во время сборки
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 # Копируйте конфигурационные файлы Jenkins (если нужно)
-COPY jenkins-config/ /var/jenkins_home/
-
-# Установите необходимые плагины (пример)
-RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding
+COPY jenkins-configuration/ /var/jenkins_home/
 
 # Выставите порт
 EXPOSE 8080
 
 # Запускайте Jenkins
 CMD ["jenkins"]
+
+# Jenkins initial setup is required. An admin user has been created and a password generated.
+# Please use the following password to proceed to installation:
+
+# 3cc42637ee8b44b598636f974594673f
+
+# This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
