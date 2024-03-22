@@ -1,46 +1,26 @@
-def BRANCH = 'main'
-
 pipeline {
-    agent { 
-        node { 
-            label getLabel(BRANCH)
-        } 
-    } 
-      
+    agent any
     stages {
-        
-        stage('Clean') {
-            steps {
-                cleanWs()
-                echo "I am cleaning your amazing branch...oh oh oh....."
-            }
-        }   
-        
-        stage('Clone repo') {
-            steps {
-                git branch:BRANCH, url: 'https://github.com/GarinaKristina/docker.git'
-            }
-        }
-        
-    
-        stage('Packages install') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                sh 'npm ci'
+                    dockerImage = docker.build("autotest-image", "./autotest")
                 }
             }
         }
-        
-        stage('Run tests') {
-            steps {    
-                    script {
-                    sh 'npm run wdio'
-                    }
-                
+        stage('Run Tests') {
+            steps {
+                script {
+                    dockerImage.run("--name autotest-container -v ${WORKSPACE}/autotest:/autotest", "npm run wdio")
+                }
             }
         }
-        
-
-    }   
-   
+    }
+    post {
+        always {
+            script {
+                docker rm -f autotest-container
+            }
+        }
+    }
 }
