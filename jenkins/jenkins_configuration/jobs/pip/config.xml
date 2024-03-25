@@ -20,7 +20,7 @@
         stage(&apos;Build Docker Image&apos;) {
             steps {
                 script {
-                    // Убедитесь, что Jenkins агент может найти исполняемый файл Docker
+                   
                     sh &quot;docker build -t autotest-image ./autotest&quot;
                 }
             }
@@ -28,7 +28,7 @@
         stage(&apos;Run Tests&apos;) {
             steps {
                 script {
-                    // Запускаем тесты, используя созданный образ
+                   
                     sh &quot;docker run --name autotest-container autotest-image npm run wdio&quot;
                 }
             }
@@ -36,7 +36,7 @@
     }
     post {
         always {
-            // Удаление контейнера и образа после выполнения тестов
+           
             sh &quot;docker rm -f autotest-container || true&quot;
             sh &quot;docker rmi autotest-image || true&quot;
         }

@@ -10,6 +10,15 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
+               tools {
+                    <...>
+                      'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+                }
+                docker.withTool('docker'){
+                docker.withRegistry('repo','credentials') { 
+                <rest of the pipeline here>
+                   }
+                }
                 script {
                     dockerImage.run("--name autotest-container -v ${WORKSPACE}/autotest:/autotest", "npm run wdio")
                 }
