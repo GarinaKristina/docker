@@ -12,6 +12,7 @@ services:
     volumes:
       - ./jenkins/jenkins_configuration:/var/jenkins_home
       - ./jenkins/var/run/docker.sock:/var/run/docker.sock
+      - ./autotest:/autotest
     networks:
       - autotest_network
 
@@ -22,7 +23,7 @@ services:
     user: root
     volumes:
       - ./autotest:/autotest
-    command: ["sh", "-c", "npm install && npm run wdio:docker"]
+    command: ["sh", "-c", "./init.sh"]
     working_dir: /autotest
     networks:
       - autotest_network
