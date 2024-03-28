@@ -17,18 +17,13 @@ services:
 
   autotest:
     build: ./autotest
-    # image: node:14
-    image: selenium/standalone-chrome:latest
-    hostname: chrome
-    privileged: true
-    shm_size: 2g
-    ports:
-      - "4444:4444"
-      - "7900:7900"
+    image: ianwalter/puppeteer:latest
     container_name: autotest
-    command: ["sh", "-c", "npm i && npm run wdio:docker"]
+    user: root
     volumes:
       - ./autotest:/autotest
+    command: ["sh", "-c", "npm install && npm run wdio:docker"]
+    working_dir: /autotest
     networks:
       - autotest_network
 

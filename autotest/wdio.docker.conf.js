@@ -10,9 +10,10 @@ export const config = {
       maxInstances: 1,
       browserName: "chrome",
       acceptInsecureCerts: true,
-      // "goog:chromeOptions": {
-      //   args: ["--disable-gpu", "--headless"],
-      // },
+      browserName: "chrome",
+      "goog:chromeOptions": {
+        args: ["--no-sandbox", "--disable-infobars", "--headless", "--disable-gpu", "--window-size=1440,735"],
+      },
     },
   ],
   services: ["docker"],
