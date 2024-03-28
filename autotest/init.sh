@@ -8,4 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 16
 nvm use 16
 
-npm install && npm run wdio:docker
+npm install && npm run wdio:docker -- --watch

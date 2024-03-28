@@ -21,6 +21,8 @@ services:
     image: ianwalter/puppeteer:latest
     container_name: autotest
     user: root
+    ports:
+      - 4444:4444
     volumes:
       - ./autotest:/autotest
     command: ["sh", "-c", "./init.sh"]
