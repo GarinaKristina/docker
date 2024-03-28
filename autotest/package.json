@@ -5,10 +5,11 @@
     "@wdio/cli": "^8.33.0",
     "@wdio/local-runner": "^8.33.0",
     "@wdio/mocha-framework": "^8.33.0",
-    "@wdio/spec-reporter": "^8.32.0"
+    "@wdio/spec-reporter": "^8.32.0",
+    "wdio-docker-service": "^3.2.1"
   },
   "scripts": {
-    "wdio": "node  run wdio.conf.js"
+    "wdio": "wdio run wdio.conf.js",
+    "wdio:docker": "wdio run wdio.docker.conf.js"
   }
 }
-

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   jenkins:
     build: ./jenkins
@@ -17,8 +17,16 @@ services:
 
   autotest:
     build: ./autotest
-    image: node:14
+    # image: node:14
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    privileged: true
+    shm_size: 2g
+    ports:
+      - "4444:4444"
+      - "7900:7900"
     container_name: autotest
+    command: ["sh", "-c", "npm i && npm run wdio:docker"]
     volumes:
       - ./autotest:/autotest
     networks:
@@ -27,6 +35,3 @@ services:
 networks:
   autotest_network:
     driver: bridge
-
-volumes:
-  jenkins_home:

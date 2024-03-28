@@ -1,22 +1,13 @@
 export const config = {
-  runner: 'local',
-  specs: ['./test/specs/**/*.js'],
-  hostname: 'localhost',
-  port: 4444,
-  path: '/wd/hub',
-  exclude: [],
-
+  specs: ["./test/specs/**/*.js"],
   capabilities: [
     {
       maxInstances: 1,
-      browserName: 'chrome',
-      'goog:chromeOptions': {
-        args: ['--no-sandbox', '--disable-infobars', '--headless', '--disable-gpu', '--window-size=1440,735'],
-      },
+      browserName: "chrome",
     },
   ],
 
-  logLevel: 'info',
+  logLevel: "warn",
 
   bail: 0,
 
@@ -26,13 +17,12 @@ export const config = {
 
   connectionRetryCount: 3,
 
-  framework: 'mocha',
+  framework: "mocha",
 
-  reporters: ['spec'],
+  reporters: ["spec"],
 
   mochaOpts: {
-    ui: 'bdd',
+    ui: "bdd",
     timeout: 60000,
   },
 };
-
