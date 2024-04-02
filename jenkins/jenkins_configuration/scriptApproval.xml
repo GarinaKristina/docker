@@ -1,18 +1,14 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <scriptApproval plugin="script-security@1326.vdb_c154de8669">
-  <approvedScriptHashes/>
-  <approvedSignatures/>
+  <approvedScriptHashes>
+    <string>SHA512:3f205299bef2fe3329258a42f2c60d332cc35ccb41a3ca0512d7869c6aff4561ff708c48123b4f7c3dec33ccca30d54fb8b9b51b5bc7070f96236d11a3f0bdcb</string>
+  </approvedScriptHashes>
+  <approvedSignatures>
+    <string>method groovy.lang.GroovyObject invokeMethod java.lang.String java.lang.Object</string>
+  </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
-  <pendingScripts>
-    <pendingScript>
-      <context>
-        <user>test</user>
-      </context>
-      <script></script>
-      <language>groovy</language>
-    </pendingScript>
-  </pendingScripts>
+  <pendingScripts/>
   <pendingSignatures/>
   <pendingClasspathEntries/>
 </scriptApproval>

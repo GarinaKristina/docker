@@ -1,0 +1,22 @@
+Started by user [8mha:////4MA15XvFQCUnyYQRqkB/C4INh19nBlnIKW8X6oCqRQF5AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgYu/dLi1CL9ktTiEgCd0uccvwAAAA==[0mtest
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drftgyhuj
+ERROR: Build step failed with exception
+java.lang.NullPointerException: uri was not specified
+	at java.base/java.util.Objects.requireNonNull(Unknown Source)
+	at com.github.dockerjava.core.DefaultDockerClientConfig$Builder.withDockerHost(DefaultDockerClientConfig.java:365)
+	at org.jenkinsci.plugins.dockerbuildstep.DockerBuilder$DescriptorImpl.createDockerClient(DockerBuilder.java:133)
+	at org.jenkinsci.plugins.dockerbuildstep.DockerBuilder$DescriptorImpl.getDockerClient(DockerBuilder.java:235)
+	at org.jenkinsci.plugins.dockerbuildstep.DockerBuilder$DescriptorImpl.getDockerClient(DockerBuilder.java:227)
+	at org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.perform(DockerBuilder.java:73)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:818)
+	at hudson.model.Build$BuildExecution.build(Build.java:199)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:164)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:526)
+	at hudson.model.Run.execute(Run.java:1895)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:44)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:442)
+Build step 'Execute Docker command' marked build as failure
+Finished: FAILURE
