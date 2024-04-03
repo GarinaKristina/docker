@@ -17,20 +17,13 @@
     agent any
     
     stages {
-        stage(&apos;Install Docker CLI&apos;) {
-            steps {
-                sh &apos;curl -fsSL https://get.docker.com -o get-docker.sh&apos;
-                sh &apos;sh get-docker.sh&apos;
-                sh &apos;usermod -aG docker jenkins&apos;
-                // Перезапуск Jenkins, чтобы применить изменения в группах пользователей
-                sh &apos;docker restart jenkins&apos;
-            }
-        }
+
         stage(&apos;Run Autotests&apos;) {
             steps {
                 script {
-                    docker.image(&apos;ianwalter/puppeteer:latest&apos;).inside {
-                       sh &apos;./init.sh&apos;
+                    def dockerImage = docker.image(&apos;ianwalter/puppeteer:latest&apos;)
+                    dockerImage.inside {
+                          sh &apos;./init.sh&apos;
                     }
                 }
             }
