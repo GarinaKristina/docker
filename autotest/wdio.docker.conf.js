@@ -2,19 +2,18 @@ import { config as baseConfig } from "./wdio.conf.js";
 
 export const config = {
   ...baseConfig,
-  hostname: "localhost",
+  hostname: "172.25.0.2",
   port: 4444,
-
+  maxInstances: 5,
   capabilities: [
     {
       maxInstances: 1,
-      browserName: "chrome",
+      browserName: "firefox",
       acceptInsecureCerts: true,
-      browserName: "chrome",
-      "goog:chromeOptions": {
-        args: ["--no-sandbox", "--disable-infobars", "--headless", "--disable-gpu", "--window-size=1440,735"],
+      "moz:firefoxOptions": {
+        args: ["--disable-gpu", "--disable-dev-shm-usage"],
       },
     },
   ],
-  services: ["docker"],
+  services: [],
 };

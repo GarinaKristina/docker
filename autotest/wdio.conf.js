@@ -3,11 +3,15 @@ export const config = {
   capabilities: [
     {
       maxInstances: 1,
-      browserName: "chrome",
+      browserName: "chromium", // or 'chromium'
+      "goog:chromeOptions": {
+        args: ["--no-sandbox", "headless", "disable-gpu"],
+      },
     },
   ],
 
   logLevel: "warn",
+  // outputDir: "./logs",
 
   bail: 0,
 

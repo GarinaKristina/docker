@@ -13,7 +13,38 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>ls</command>
+      <command>
+export NVM_DIR=&quot;$HOME/.nvm&quot;
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;
+[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;
+nvm install 20.12.2
+nvm use 20.12.2
+
+export PATH=&quot;$PATH:$HOME/.nvm/versions/node/`nvm current`/bin&quot;
+
+node --version
+npm -version
+
+ls -la
+cd ..
+ls  -la
+node --version
+cd ..
+ls  -la
+node --version
+cd ..
+ls  -la
+node --version
+cd ..
+ls  -la
+node --version
+cd autotest
+ls  -la
+node --version
+npm -version
+npm install
+npm run wdio:docker</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>

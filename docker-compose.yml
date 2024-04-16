@@ -14,22 +14,26 @@ services:
       - ./jenkins/var/run/docker.sock:/var/run/docker.sock
       - ./autotest:/autotest
     networks:
-      - autotest_network
+      - autotest_network2
 
   autotest:
     build: ./autotest
-    image: ianwalter/puppeteer:latest
+    image: selenium/standalone-firefox:latest
+    hostname: firefox
+    privileged: true
     container_name: autotest
-    user: root
+    shm_size: 2g
     ports:
-      - 4444:4444
+      - "4442:4444"
+      - "7901:7900"
     volumes:
       - ./autotest:/autotest
-    command: ["sh", "-c", "./init.sh"]
+    # command: ["sh", "-c", ""]
+
     working_dir: /autotest
     networks:
-      - autotest_network
+      - autotest_network2
 
 networks:
-  autotest_network:
+  autotest_network2:
     driver: bridge

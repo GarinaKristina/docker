@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  jenkins:
+    build: ./jenkins
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - ./jenkins/jenkins_configuration:/var/jenkins_home
+      - ./jenkins/var/run/docker.sock:/var/run/docker.sock
+      - ./autotest:/autotest
+    networks:
+      - autotest_network
+
+  autotest:
+    build: ./autotest
+    image: ianwalter/puppeteer:latest
+    container_name: autotest
+    user: root
+    ports:
+      - 4444:4444
+    volumes:
+      - ./autotest:/autotest
+    command: ["sh", "-c", "./init.sh"]
+    working_dir: /autotest
+    networks:
+      - autotest_network
+
+networks:
+  autotest_network:
+    driver: bridge
