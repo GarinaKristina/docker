@@ -2,7 +2,7 @@ import { config as baseConfig } from "./wdio.conf.js";
 
 export const config = {
   ...baseConfig,
-  hostname: "172.25.0.2",
+  hostname: "172.25.0.3",
   port: 4444,
   maxInstances: 5,
   capabilities: [
